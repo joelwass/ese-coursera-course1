@@ -24,6 +24,9 @@
 #include "data.h"
 #include "stats.h"
 
+#define BASE_16 (16)
+#define BASE_10 (10)
+
 int8_t test_data1() {
   uint8_t * ptr;
   int32_t num = -4096;
@@ -44,7 +47,7 @@ int8_t test_data1() {
   PRINTF("  Initial number: %d\n", num);
   PRINTF("  Final Decimal number: %d\n", value);
   #endif
-  free_words( (uint32_t*)ptr );
+  free_words( (int32_t*)ptr );
 
   if ( value != num )
   {
@@ -73,7 +76,7 @@ int8_t test_data2() {
   PRINTF("  Initial Decimal number: %d\n", num);
   PRINTF("  Final Decimal number: %d\n", value);
   #endif
-  free_words( (uint32_t*)ptr );
+  free_words( (int32_t*)ptr );
 
   if ( value != num )
   {
@@ -118,7 +121,7 @@ int8_t test_memmove1() {
     }
   }
 
-  free_words( (uint32_t*)set );
+  free_words( (int32_t*)set );
   return ret;
 }
 
@@ -156,7 +159,7 @@ int8_t test_memmove2() {
     }
   }
 
-  free_words( (uint32_t*)set );
+  free_words( (int32_t*)set );
   return ret;
 }
 
@@ -196,7 +199,7 @@ int8_t test_memmove3() {
   }
 
 
-  free_words( (uint32_t*)set );
+  free_words( (int32_t*)set );
   return ret;
 
 }
@@ -235,7 +238,7 @@ int8_t test_memcopy() {
     }
   }
 
-  free_words( (uint32_t*)set );
+  free_words( (int32_t*)set );
   return ret;
 }
 
@@ -281,7 +284,7 @@ int8_t test_memset()
     }
   }
   
-  free_words( (uint32_t*)set );
+  free_words( (int32_t*)set );
   return ret;
 }
 
@@ -317,11 +320,11 @@ int8_t test_reverse()
     }
   }
 
-  free_words( (uint32_t*)copy );
+  free_words( (int32_t*)copy );
   return ret;
 }
 
-void course1(void) 
+int course1(void) 
 {
   uint8_t i;
   int8_t failed = 0;
@@ -346,4 +349,5 @@ void course1(void)
   PRINTF("  PASSED: %d / %d\n", (TESTCOUNT - failed), TESTCOUNT);
   PRINTF("  FAILED: %d / %d\n", failed, TESTCOUNT);
   PRINTF("--------------------------------\n");
+	return 0;
 }
