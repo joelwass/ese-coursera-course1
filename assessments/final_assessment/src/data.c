@@ -34,7 +34,7 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base) {
 			*(ptr + count) = 45;
 			count++;
 		}
-    //code to reverse the the characters
+    // reverse the chars
 		for (int i = 0; i < count/2; i++) {
 			temp2 = *(ptr + i);
 			*(ptr + i) = *(ptr + count - 1 - i);
@@ -51,8 +51,7 @@ int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base) {
 	int count = 0;
 
 	//if it is a negative number in 2's compliment representation
-	if(base == 2 && *ptr == '1')
-	{
+	if(base == 2 && *ptr == '1') {
 		temp = *ptr - '0';
 		result = (result*base + temp)*(-1);
 		count++;
@@ -69,7 +68,7 @@ int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base) {
 	} else if ((base == 10 || base == 16) && *ptr == '-') {
 		count++;
     // Minus 1 on the digits so we don't count the negative sign
-		for(int i = 0; i < digits - 1; i++) {
+		for (int i = 0; i < digits - 1; i++) {
 			if (*(ptr+count) >= '0' && *(ptr+count) <= '9') {
 				temp = *(ptr+count) - 48;
 			} else {
@@ -79,9 +78,9 @@ int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base) {
       count++;
 		}
 		result = -1 * result;
-	//else it is a positive number(the procedure is the same for any base
+	//else it is a positive number and the procedure is the same for any base
 	} else {
-		for(int i=0; i<digits; i++) {
+		for (int i=0; i<digits; i++) {
 			if(*(ptr+count) >= '0' && *(ptr+count) <= '9') {
 				temp = *(ptr+count) - '0';
 			}else{
