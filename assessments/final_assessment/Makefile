@@ -26,6 +26,8 @@ include sources.mk
 PLATFORM = HOST
 BASENAME = final
 TARGET = $(BASENAME).out
+COURSE1 = COURSE1
+VERBOSE = VERBOSE
 
 # Architectures Specific Flags
 LINKER_FILE = ./msp432p401r.lds
@@ -38,7 +40,7 @@ PRINT_SIZE = arm-none-eabi-size $(TARGET)
 LD = arm-none-eabi-ld
 LDFLAGS = -Wl -T $(LINKER_FILE)
 CFLAGS = -mcpu=cortex-m4 -mthumb -march=armv7e-m -mfloat-abi=hard -mfpu=fpv4-sp-d16 --specs=nosys.specs -Wall -Werror -g -O0 -std=c99
-CPPFLAGS = $(INCLUDES) -D$(PLATFORM) -DCOURSE1 -DVERBOSE
+CPPFLAGS = $(INCLUDES) -D$(PLATFORM) -D$(COURSE1) -D$(VERBOSE)
 else
 SRCS = $(SOURCES_HOST)
 OBJS = $(SRCS:.c=.o)
@@ -47,7 +49,7 @@ PRINT_SIZE = size $(TARGET)
 LD = ld
 LDFLAGS = -Wl
 CFLAGS = -Wall -Werror -g -O0  
-CPPFLAGS = $(INCLUDES) -D$(PLATFORM) -DCOURSE1 -DVERBOSE
+CPPFLAGS = $(INCLUDES) -D$(PLATFORM) -D$(COURSE1) -D$(VERBOSE)
 endif
 
 #Pre-processing Stage
@@ -77,4 +79,4 @@ compile-all: $(SRCS:.c=.o)
 
 .PHONY: clean
 clean:
-	rm -f $(SRCS:.c=.o) $(SRCS:.c=.d) $(SRCS:.c=.i) $(SRCS:.c=.asm) $(TARGET).out $(TARGET).map
+	rm -f $(SRCS:.c=.o) $(SRCS:.c=.d) $(SRCS:.c=.i) $(SRCS:.c=.asm) $(TARGET) $(BASENAME).map
